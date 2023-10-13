@@ -1,6 +1,7 @@
 package model;
 
-// Represents a custom ruleset for minesweeper. Customizable rules are:
+// Represents a custom ruleset for minesweeper.
+// Customizable rules are:
 // - Number of rows
 // - Number of columns
 // - Proportion of tiles on the board that are mines
@@ -48,7 +49,9 @@ public class RuleSet {
     }
 
     // MODIFIES: this
-    // EFFECTS: increases gamesPlayed by 1, increases gamesWon by 1 if win is true, updates winPercent
+    // EFFECTS: increases gamesPlayed by 1;
+    //          if win is true, increases gamesWon by 1, otherwise gamesWon stays the same;
+    //          updates winPercent
     public void gameFinished(boolean win) {
         this.gamesPlayed++;
         if (win) {

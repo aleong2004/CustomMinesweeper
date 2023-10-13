@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-// Represents a list of tiles which represents a board. The order of the list is the first
-// row of tiles from the left to right, the next row from left to right, and so on.
+// Represents a list of tiles which represents a board.
+// The order of the list is the first row of tiles from
+// left to right, the next row from left to right, and so on.
 public class TileList {
     private List<Tile> tileList;
     private RuleSet currentRuleSet;
 
+    // REQUIRES: numRows and numCols in ruleSet are both > 0
     // EFFECTS: constructs a new list of tiles to represent the base board for a ruleset.
     //          The base board consists of only placeholder tiles but has the correct
     //          dimensions as specified by the given ruleset.
@@ -22,7 +24,8 @@ public class TileList {
         }
     }
 
-    // REQUIRES: start is in [0, tileList.size() - 1]
+    // REQUIRES: numRows and numCols in ruleSet are both > 0,
+    //           start is in [0, tileList.size() - 1]
     // MODIFIES: this
     // EFFECTS: generate proper tiles for the board of a given ruleset
     public void generateTiles(RuleSet ruleSet, int start, int seed) {
@@ -39,7 +42,7 @@ public class TileList {
         }
     }
 
-    // MODIFIES: all Tile in tileList
+    // MODIFIES: all Tiles in tileList
     // EFFECTS: sets the proper number of neighbouring mines for all tiles
     public void setNeighbouringMinesAllTiles() {
         for (Tile tile : this.tileList) {
@@ -65,7 +68,7 @@ public class TileList {
         }
     }
 
-    // REQUIRES: index corresponds to a tile in section 1
+    // REQUIRES: index corresponds to a tile in section 1 on the given ruleset
     // EFFECTS: returns the number of mines in neighbouring tiles
     public int getNeighbouringMinesSectionOne(RuleSet ruleSet, int index) {
         Tile rightTile = this.tileList.get(index + 1);
@@ -77,7 +80,7 @@ public class TileList {
         return (rightTileMine + downTileMine + downRightTileMine);
     }
 
-    // REQUIRES: index corresponds to a tile in section 2
+    // REQUIRES: index corresponds to a tile in section 2 on the given ruleset
     // EFFECTS: returns the number of mines in neighbouring tiles
     public int getNeighbouringMinesSectionTwo(RuleSet ruleSet, int index) {
         Tile leftTile = this.tileList.get(index - 1);
@@ -93,7 +96,7 @@ public class TileList {
         return (leftTileMine + rightTileMine + downLeftTileMine + downTileMine + downRightTileMine);
     }
 
-    // REQUIRES: index corresponds to a tile in section 3
+    // REQUIRES: index corresponds to a tile in section 3 on the given ruleset
     // EFFECTS: returns the number of mines in neighbouring tiles
     public int getNeighbouringMinesSectionThree(RuleSet ruleSet, int index) {
         Tile leftTile = this.tileList.get(index - 1);
@@ -105,7 +108,7 @@ public class TileList {
         return (leftTileMine + downLeftTileMine + downTileMine);
     }
 
-    // REQUIRES: index corresponds to a tile in section 4
+    // REQUIRES: index corresponds to a tile in section 4 on the given ruleset
     // EFFECTS: returns the number of mines in neighbouring tiles
     public int getNeighbouringMinesSectionFour(RuleSet ruleSet, int index) {
         Tile upTile = this.tileList.get(index - ruleSet.getNumCols());
@@ -121,7 +124,7 @@ public class TileList {
         return (upTileMine + upRightTileMine + rightTileMine + downTileMine + downRightTileMine);
     }
 
-    // REQUIRES: index corresponds to a tile in section 5
+    // REQUIRES: index corresponds to a tile in section 5 on the given ruleset
     // EFFECTS: returns the number of mines in neighbouring tiles
     public int getNeighbouringMinesSectionFive(RuleSet ruleSet, int index) {
         Tile upLeftTile = this.tileList.get(index - ruleSet.getNumCols() - 1);
@@ -144,7 +147,7 @@ public class TileList {
 
     }
 
-    // REQUIRES: index corresponds to a tile in section 6
+    // REQUIRES: index corresponds to a tile in section 6 on the given ruleset
     // EFFECTS: returns the number of mines in neighbouring tiles
     public int getNeighbouringMinesSectionSix(RuleSet ruleSet, int index) {
         Tile upLeftTile = this.tileList.get(index - ruleSet.getNumCols() - 1);
@@ -160,7 +163,7 @@ public class TileList {
         return (upLeftTileMine + upTileMine + leftTileMine + downLeftTileMine + downTileMine);
     }
 
-    // REQUIRES: index corresponds to a tile in section 7
+    // REQUIRES: index corresponds to a tile in section 7 on the given ruleset
     // EFFECTS: returns the number of mines in neighbouring tiles
     public int getNeighbouringMinesSectionSeven(RuleSet ruleSet, int index) {
         Tile upTile = this.tileList.get(index - ruleSet.getNumCols());
@@ -172,7 +175,7 @@ public class TileList {
         return (upTileMine + upRightTileMine + rightTileMine);
     }
 
-    // REQUIRES: index corresponds to a tile in section 8
+    // REQUIRES: index corresponds to a tile in section 8 on the given ruleset
     // EFFECTS: returns the number of mines in neighbouring tiles
     public int getNeighbouringMinesSectionEight(RuleSet ruleSet, int index) {
         Tile upLeftTile = this.tileList.get(index - ruleSet.getNumCols() - 1);
@@ -188,7 +191,7 @@ public class TileList {
         return (upLeftTileMine + upTileMine + upRightTileMine + leftTileMine + rightTileMine);
     }
 
-    // REQUIRES: index corresponds to a tile in section 9
+    // REQUIRES: index corresponds to a tile in section 9 on the given ruleset
     // EFFECTS: returns the number of mines in neighbouring tiles
     public int getNeighbouringMinesSectionNine(RuleSet ruleSet, int index) {
         Tile upLeftTile = this.tileList.get(index - ruleSet.getNumCols() - 1);

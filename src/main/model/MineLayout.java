@@ -4,19 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-// Represents the layout of mines for a board. 'true' represent a mine, 'false' represent no mine.
-// The order of the list is the first row of tiles from the left to right, the next row from
-// left to right, and so on. For example, a 3x3 board with a mine layout of
+// Represents the layout of mines for a board. 'true' represent a mine,
+// 'false' represent no mine. The order of the list is the first row of
+// tiles from left to right, the next row from left to right, and so on.
+// For example, a 3x3 board with a mine layout of
 // true true false
 // false false true
 // false true true
-// is represented as a list in the following order: true true false false false true false true true
+// is represented as a list in the following order: true true false false false true false true true.
 public class MineLayout {
     private final RuleSet currentRuleSet;
     private List<Boolean> mineLayout;
     private int numMines;
 
-    // EFFECTS: constructs a layout of no mines using a given ruleset
+    // REQUIRES: numRows and numCols in ruleSet are both > 0
+    // EFFECTS: constructs a layout of no mines with the correct
+    //          dimensions as specified by the given ruleset
     public MineLayout(RuleSet ruleSet) {
         this.currentRuleSet = ruleSet;
         this.mineLayout = new ArrayList<>();
@@ -28,7 +31,8 @@ public class MineLayout {
     }
 
     // REQUIRES: numRows and numCols in ruleSet are both > 0,
-    //           mineProportion in ruleSet is in [MIN_MINE_PROPORTION, MAX_MINE_PROPORTION]
+    //           mineProportion in ruleSet is in [0.0, 1.0]
+    // MODIFIES: this
     // EFFECTS: creates an unrandomized mine layout
     //          - size of the list is numRows * numCols
     //          - first (numRows * numCols * mineProportion) items are true,
@@ -49,8 +53,8 @@ public class MineLayout {
 
     // REQUIRES: this.mineLayout is not empty, start is in [0, this.mineLayout.size() - 1]
     // MODIFIES: this
-    // EFFECTS: randomizes the mine layout. There cannot be a mine
-    //          at index start, which represents the first tile revealed
+    // EFFECTS: randomizes the mine layout while guaranteeing that there cannot be
+    //          a mine at index start, which represents the first tile revealed
     public void randomizeMineLayout(int start, int seed) {
         List<Boolean> tempList = this.mineLayout;
         this.mineLayout = new ArrayList<>();

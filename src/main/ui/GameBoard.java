@@ -22,7 +22,7 @@ public class GameBoard {
     private int numFlags;
     private boolean gameIsActive;
 
-    // EFFECTS: initializes an empty board for the first revealed tile
+    // EFFECTS: initializes an empty board and runs the process of revealing the first tile
     public GameBoard(RuleSet ruleSet) {
         System.out.println("Initializing game...\n");
         this.ruleSet = ruleSet;
@@ -35,14 +35,15 @@ public class GameBoard {
         firstTile();
     }
 
-    // EFFECTS: runs the process of revealing the first tile
+    // EFFECTS: reveals the first tile then runs the board
     private void firstTile() {
         processReveal();
         runBoard();
     }
 
+    // REQUIRES: 0 <= this.index < this.board.getTileList().size()
     // MODIFIES: this
-    // EFFECTS: properly sets up and runs the board
+    // EFFECTS: properly sets up the board, then processes user input
     private void runBoard() {
         Random random = new Random();
         int seed = random.nextInt();
@@ -65,42 +66,32 @@ public class GameBoard {
         }
     }
 
-    @SuppressWarnings("methodlength")
+    // REQUIRES: numRows and numCols in ruleSet are both > 0,
+    //           this.board.getTileList().size() = numRows * numCols
+    // EFFECTS: displays the board
     private void displayBoard() {
         int position = 0;
-        for (int i = 1; i <= this.ruleSet.getNumRows(); i++) {
-            for (int j = 1; j < this.ruleSet.getNumCols(); j++) {
-                if (this.board.getTileList().get(position).getState() == 0) {
-                    System.out.print("|_|");
-                } else if (this.board.getTileList().get(position).getState() == 2) {
-                    System.out.print(" X ");
-                } else if (this.board.getTileList().get(position).getDisplayValue().equals("mine")) {
-                    System.out.print(this.board.getTileList().get(position).getDisplayValue());
-                } else if (this.board.getTileList().get(position).isRange()
-                        && !this.board.getTileList().get(position).isQuestionMark()) {
-                    System.out.print(this.board.getTileList().get(position).getDisplayValue());
-                } else {
-                    System.out.print(" " + this.board.getTileList().get(position).getDisplayValue() + " ");
-                }
-                position++;
-            }
+        for (int i = 1; i <= (this.ruleSet.getNumRows() * this.ruleSet.getNumCols()); i++) {
             if (this.board.getTileList().get(position).getState() == 0) {
-                System.out.println("|_|");
+                System.out.print("|_|");
             } else if (this.board.getTileList().get(position).getState() == 2) {
-                System.out.println(" X ");
+                System.out.print(" X ");
             } else if (this.board.getTileList().get(position).getDisplayValue().equals("mine")) {
-                System.out.println(this.board.getTileList().get(position).getDisplayValue());
+                System.out.print(this.board.getTileList().get(position).getDisplayValue());
             } else if (this.board.getTileList().get(position).isRange()
                     && !this.board.getTileList().get(position).isQuestionMark()) {
-                System.out.println(this.board.getTileList().get(position).getDisplayValue());
+                System.out.print(this.board.getTileList().get(position).getDisplayValue());
             } else {
-                System.out.println(" " + this.board.getTileList().get(position).getDisplayValue() + " ");
+                System.out.print(" " + this.board.getTileList().get(position).getDisplayValue() + " ");
+            }
+            if ((position + 1) % this.ruleSet.getNumCols() == 0) {
+                System.out.println();
             }
             position++;
         }
-        System.out.println();
     }
 
+    // EFFECTS: processes user action
     private void processAction(String action) {
         if (action.equals("reveal")) {
             processReveal();
@@ -111,6 +102,9 @@ public class GameBoard {
         }
     }
 
+    // REQUIRES: numCols in ruleSet > 0
+    // MODIFIES: this
+    // EFFECTS: selects the currently selected column
     private void chooseColumn() {
         boolean chooseColumn = true;
         while (chooseColumn) {
@@ -125,6 +119,9 @@ public class GameBoard {
         }
     }
 
+    // REQUIRES: numRows in ruleSet > 0
+    // MODIFIES: this
+    // EFFECTS: selects the currently selected row
     private void chooseRow() {
         boolean chooseRow = true;
         while (chooseRow) {
@@ -140,6 +137,10 @@ public class GameBoard {
         }
     }
 
+    // REQUIRES: numRows and numCols in ruleSet are both > 0,
+    //           this.board.getTileList().size() = numRows * numCols
+    // MODIFIES: Tile in board
+    // EFFECTS: reveals the selected tile
     private void processReveal() {
         chooseColumn();
         chooseRow();
@@ -159,6 +160,10 @@ public class GameBoard {
         }
     }
 
+    // REQUIRES: numRows and numCols in ruleSet are both > 0
+    //           this.board.getTileList().size() = numRows * numCols
+    // MODIFIES: Tile in board
+    // EFFECTS: flags the selected tile
     private void processFlag() {
         chooseColumn();
         chooseRow();
@@ -182,16 +187,24 @@ public class GameBoard {
         }
     }
 
+    // REQUIRES: x, y, numRows, numCols in ruleSet all > 0
+    // MODIFIES: this
+    // EFFECTS: converts the row and column of a tile
+    //          into the corresponding index in board
     private void convertCoordsToIndex(int x, int y) {
         this.index = ((y - 1) * this.ruleSet.getNumCols() + x - 1);
     }
 
+    // EFFECTS: displays the possible actions the user can perform
     private void displayActions() {
         System.out.println("\n Choose an action:");
         System.out.println("\"reveal\" - reveal a tile");
         System.out.println("\"flag\" - flag a tile");
     }
 
+    // REQUIRES: 0 <= this.index < this.board.getTileList().size()
+    // MODIFIES: this
+    // EFFECTS: checks if game is over and handles the game over sequence
     private void checkGameIsOver() {
         List<Tile> tileList = board.getTileList();
         if (tileList.get(index).isMine() && (tileList.get(index).getState() == 1)) {

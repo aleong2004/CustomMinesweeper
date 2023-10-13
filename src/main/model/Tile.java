@@ -2,9 +2,13 @@ package model;
 
 import java.util.Random;
 
-// Represents a tile on a board. The boardSection field is an integer in the range [1, 9]
-// that corresponds to what section of the board the tile is in. The sections of any given
-// board are as follows:
+// Represents a tile on a board.
+// The state field is an integer in the range [0, 2] that represents the state of the tile:
+// State 0 - tile is unrevealed
+// State 1 - tile is revealed
+// State 2 - tile is flagged
+// The boardSection field is an integer in the range [1, 9] that corresponds to what
+// section of the board the tile is in. The sections of any given board are as follows:
 // - Section 1 is the top-left corner
 // - Section 2 is the topmost row, excluding the ends
 // - Section 3 is the top-right corner
@@ -16,7 +20,7 @@ import java.util.Random;
 // - Section 9 is the bottom-right corner
 public class Tile {
     private String displayValue;
-    private int state; // 0 = unrevealed, 1 = revealed, 2 = unrevealed and flagged
+    private int state;
     private boolean mine;
     private int index;
     private int boardSection;
@@ -24,6 +28,7 @@ public class Tile {
     private boolean range;
     private boolean questionMark;
 
+    // REQUIRES: index >= 0
     // EFFECTS: constructs a placeholder unrevealed tile at the given index
     public Tile(int index) {
         this.displayValue = "0";
@@ -36,6 +41,7 @@ public class Tile {
         this.questionMark = false;
     }
 
+    // REQUIRES: 0 <= index <= ruleSetList.size() - 1
     // EFFECTS: constructs a new unrevealed tile at the given index using a given ruleset
     public Tile(RuleSet ruleSet, MineLayout mineLayout, int index, int seed) {
         this.index = index;
@@ -50,7 +56,7 @@ public class Tile {
         this.questionMark = (secondRandomDouble < ruleSet.getQuestionMarkChance());
     }
 
-    // REQUIRES: ruleSet is a valid ruleset
+    // REQUIRES: numRows and numCols in ruleSet are both > 0
     // MODIFIES: this
     // EFFECTS: sets boardSection according to the class-level comment
     private void setBoardSection(RuleSet ruleSet) {
@@ -75,7 +81,6 @@ public class Tile {
         }
     }
 
-    // REQUIRES: this.numNeighbouringMines is [0, 8]
     // MODIFIES: this
     // EFFECTS: updates displayValue
     public void updateDisplayValue(int seed) {
@@ -84,13 +89,15 @@ public class Tile {
         } else if (questionMark) {
             this.displayValue = "?";
         } else if (range) {
-            displayValueRange(seed);
+            updateDisplayValueRange(seed);
         } else {
             this.displayValue = Integer.toString(this.numNeighbouringMines);
         }
     }
 
-    public void displayValueRange(int seed) {
+    // MODIFIES: this
+    // EFFECTS: updates displayValue to be a range
+    public void updateDisplayValueRange(int seed) {
         Random random = new Random();
         random.setSeed(seed);
         int randomInt = random.nextInt(2);

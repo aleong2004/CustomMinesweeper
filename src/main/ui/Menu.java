@@ -38,6 +38,7 @@ public class Menu {
         }
     }
 
+    // EFFECTS: displays the possible actions the user can perform
     private void displayMenu() {
         System.out.println("\n Choose an option:");
         System.out.println("\"add\" - add a new default ruleset");
@@ -49,6 +50,7 @@ public class Menu {
         System.out.println("\"quit\" - exit the application");
     }
 
+    // EFFECTS: display the selected ruleset
     private void displaySelectedRuleSet() {
         RuleSet selected = savedRuleSets.getCurrentlySelectedRuleSet();
         System.out.println("Selected ruleset:");
@@ -70,6 +72,7 @@ public class Menu {
         System.out.print("\n");
     }
 
+    // EFFECTS: display the list of saved rulesets
     private void displaySavedRuleSets() {
         List<RuleSet> savedRuleSets = this.savedRuleSets.getRuleSetList();
         System.out.println("List of saved rulesets:");
@@ -93,7 +96,8 @@ public class Menu {
         System.out.print("\n");
     }
 
-    // possible actions: add, remove, select, edit, stats, play
+    // MODIFIES: this
+    // EFFECTS: processes user action
     private void processAction(String action) {
         if (action.equals("add")) {
             processAdd();
@@ -112,11 +116,17 @@ public class Menu {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: add a default ruleset
     private void processAdd() {
         this.savedRuleSets.addRuleSet();
         System.out.println("New default ruleset added\n");
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes the currently selected ruleset from the list
+    //          unless it is the last ruleset in the list;
+    //          sets the first ruleset as the currently selected ruleset
     private void processRemove() {
         int sizeBefore = this.savedRuleSets.getRuleSetList().size();
         this.savedRuleSets.removeRuleSet();
@@ -127,6 +137,8 @@ public class Menu {
         System.out.println("Ruleset removed\n");
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the currently selected ruleset
     private void processSelect() {
         int size = this.savedRuleSets.getRuleSetList().size();
         System.out.println("Input the value of the desired ruleset's order in the list");
@@ -140,6 +152,8 @@ public class Menu {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: edits the currently selected ruleset
     private void processEdit() {
         System.out.println("Input the new name");
         String name = input.next();
@@ -160,6 +174,7 @@ public class Menu {
         this.savedRuleSets.editExistingRuleSet(name, rows, cols, mineProp, flagLimit, maxFlags, range, questionMark);
     }
 
+    // EFFECTS: displays the statistics for the currently selected ruleset
     private void processStats() {
         String name = this.savedRuleSets.getCurrentlySelectedRuleSet().getName();
         int gamesPlayed = this.savedRuleSets.getCurrentlySelectedRuleSet().getGamesPlayed();
@@ -171,6 +186,7 @@ public class Menu {
         System.out.println("Win Percentage " + winPercent + "%\n");
     }
 
+    // EFFECTS: initializes the minesweeper board for the currently selected ruleset
     private void processPlay() {
         new GameBoard(this.savedRuleSets.getCurrentlySelectedRuleSet());
     }

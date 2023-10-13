@@ -3,7 +3,6 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,10 +16,6 @@ public class TileListTest {
     @BeforeEach
     void runBefore() {
         testRuleSetList = new RuleSetList();
-//        testRuleSetList.editExistingRuleSet("custom", 10, 10, 0.5, false, 10, 0.4, 0.4);
-//        testMineLayout = new MineLayout(testRuleSetList.getCurrentlySelectedRuleSet());
-//        testMineLayout.generateMines();
-//        testMineLayout.randomizeMineLayout(26, 1111);
     }
 
     @Test
@@ -88,6 +83,7 @@ public class TileListTest {
         testTileList.generateTiles(testRuleSetList.getCurrentlySelectedRuleSet(), 0, 100);
         testTileList.setNeighbouringMinesAllTiles();
         List<Tile> tileList = testTileList.getTileList();
+        assertEquals(100, tileList.size());
         assertEquals(0, tileList.get(0).getNumNeighbouringMines());
         assertEquals(0, tileList.get(1).getNumNeighbouringMines());
         assertEquals(0, tileList.get(2).getNumNeighbouringMines());
@@ -199,6 +195,7 @@ public class TileListTest {
         testTileList.generateTiles(testRuleSetList.getCurrentlySelectedRuleSet(), 15, 100);
         testTileList.setNeighbouringMinesAllTiles();
         List<Tile> tileList = testTileList.getTileList();
+        assertEquals(100, tileList.size());
         assertEquals(0, tileList.get(0).getNumNeighbouringMines());
         assertEquals(2, tileList.get(1).getNumNeighbouringMines());
         assertEquals(1, tileList.get(2).getNumNeighbouringMines());
@@ -310,6 +307,7 @@ public class TileListTest {
         testTileList.generateTiles(testRuleSetList.getCurrentlySelectedRuleSet(), 12, 888);
         testTileList.setNeighbouringMinesAllTiles();
         List<Tile> tileList = testTileList.getTileList();
+        assertEquals(25, tileList.size());
         assertEquals(1, tileList.get(0).getNumNeighbouringMines());
         assertEquals(2, tileList.get(1).getNumNeighbouringMines());
         assertEquals(1, tileList.get(2).getNumNeighbouringMines());
@@ -346,6 +344,7 @@ public class TileListTest {
         testTileList.generateTiles(testRuleSetList.getCurrentlySelectedRuleSet(), 12, 99);
         testTileList.setNeighbouringMinesAllTiles();
         List<Tile> tileList = testTileList.getTileList();
+        assertEquals(25, tileList.size());
         assertEquals(3, tileList.get(0).getNumNeighbouringMines());
         assertEquals(3, tileList.get(1).getNumNeighbouringMines());
         assertEquals(3, tileList.get(2).getNumNeighbouringMines());

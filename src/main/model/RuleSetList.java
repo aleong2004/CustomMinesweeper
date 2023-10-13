@@ -24,10 +24,11 @@ public class RuleSetList {
         this.selectedRuleSetIndex = sizeOfListBeforeAdding;
     }
 
+    // REQUIRES: this.ruleSetList.size() > 0
     // MODIFIES: this
     // EFFECTS: removes the currently selected ruleset from the list
-    //          unless it is the last ruleset in the list and sets
-    //          the first ruleset as the currently selected one
+    //          unless it is the last ruleset in the list;
+    //          sets the first ruleset as the currently selected ruleset
     public void removeRuleSet() {
         int size = this.ruleSetList.size();
         if (size > 1) {
@@ -42,7 +43,7 @@ public class RuleSetList {
         return this.ruleSetList.get(getSelectedRuleSetIndex());
     }
 
-    // MODIFIES: this
+    // MODIFIES: the currently selected ruleset
     // EFFECTS: edits the name and rules of the currently selected ruleset
     public void editExistingRuleSet(String name, int numRows, int numCols,
                                     double mineProportion, boolean flagLimit, int maxFlags,
