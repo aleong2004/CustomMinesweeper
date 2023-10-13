@@ -300,5 +300,77 @@ public class TileListTest {
         assertEquals(3, tileList.get(98).getNumNeighbouringMines());
         assertEquals(1, tileList.get(99).getNumNeighbouringMines());
     }
+
+    @Test
+    void testEvenMoreNeighbouringMines() {
+        testRuleSetList.editExistingRuleSet("custom", 5, 5, 0.5, false, 10, 0.25, 0.25);
+        testMineLayout = new MineLayout(testRuleSetList.getCurrentlySelectedRuleSet());
+        testTileList = new TileList(testRuleSetList.getCurrentlySelectedRuleSet());
+        assertEquals(25, testTileList.getTileList().size());
+        testTileList.generateTiles(testRuleSetList.getCurrentlySelectedRuleSet(), 12, 888);
+        testTileList.setNeighbouringMinesAllTiles();
+        List<Tile> tileList = testTileList.getTileList();
+        assertEquals(1, tileList.get(0).getNumNeighbouringMines());
+        assertEquals(2, tileList.get(1).getNumNeighbouringMines());
+        assertEquals(1, tileList.get(2).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(3).getNumNeighbouringMines());
+        assertEquals(2, tileList.get(4).getNumNeighbouringMines());
+        assertEquals(2, tileList.get(5).getNumNeighbouringMines());
+        assertEquals(4, tileList.get(6).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(7).getNumNeighbouringMines());
+        assertEquals(4, tileList.get(8).getNumNeighbouringMines());
+        assertEquals(2, tileList.get(9).getNumNeighbouringMines());
+        assertEquals(2, tileList.get(10).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(11).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(12).getNumNeighbouringMines());
+        assertEquals(4, tileList.get(13).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(14).getNumNeighbouringMines());
+        assertEquals(4, tileList.get(15).getNumNeighbouringMines());
+        assertEquals(5, tileList.get(16).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(17).getNumNeighbouringMines());
+        assertEquals(2, tileList.get(18).getNumNeighbouringMines());
+        assertEquals(1, tileList.get(19).getNumNeighbouringMines());
+        assertEquals(1, tileList.get(20).getNumNeighbouringMines());
+        assertEquals(2, tileList.get(21).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(22).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(23).getNumNeighbouringMines());
+        assertEquals(2, tileList.get(24).getNumNeighbouringMines());
+    }
+
+    @Test
+    void testYetMoreNeighbouringMines() {
+        testRuleSetList.editExistingRuleSet("custom", 5, 5, 0.5, false, 10, 0.25, 0.25);
+        testMineLayout = new MineLayout(testRuleSetList.getCurrentlySelectedRuleSet());
+        testTileList = new TileList(testRuleSetList.getCurrentlySelectedRuleSet());
+        assertEquals(25, testTileList.getTileList().size());
+        testTileList.generateTiles(testRuleSetList.getCurrentlySelectedRuleSet(), 12, 99);
+        testTileList.setNeighbouringMinesAllTiles();
+        List<Tile> tileList = testTileList.getTileList();
+        assertEquals(3, tileList.get(0).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(1).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(2).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(3).getNumNeighbouringMines());
+        assertEquals(2, tileList.get(4).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(5).getNumNeighbouringMines());
+        assertEquals(4, tileList.get(6).getNumNeighbouringMines());
+        assertEquals(5, tileList.get(7).getNumNeighbouringMines());
+        assertEquals(2, tileList.get(8).getNumNeighbouringMines());
+        assertEquals(1, tileList.get(9).getNumNeighbouringMines());
+        assertEquals(5, tileList.get(10).getNumNeighbouringMines());
+        assertEquals(5, tileList.get(11).getNumNeighbouringMines());
+        assertEquals(5, tileList.get(12).getNumNeighbouringMines());
+        assertEquals(4, tileList.get(13).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(14).getNumNeighbouringMines());
+        assertEquals(2, tileList.get(15).getNumNeighbouringMines());
+        assertEquals(4, tileList.get(16).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(17).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(18).getNumNeighbouringMines());
+        assertEquals(0, tileList.get(19).getNumNeighbouringMines());
+        assertEquals(2, tileList.get(20).getNumNeighbouringMines());
+        assertEquals(4, tileList.get(21).getNumNeighbouringMines());
+        assertEquals(2, tileList.get(22).getNumNeighbouringMines());
+        assertEquals(3, tileList.get(23).getNumNeighbouringMines());
+        assertEquals(1, tileList.get(24).getNumNeighbouringMines());
+    }
 }
 
