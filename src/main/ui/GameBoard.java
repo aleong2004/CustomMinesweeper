@@ -71,7 +71,7 @@ public class GameBoard {
         for (int i = 1; i <= this.ruleSet.getNumRows(); i++) {
             for (int j = 1; j < this.ruleSet.getNumCols(); j++) {
                 if (this.board.getTileList().get(position).getState() == 0) {
-                    System.out.print(" █ ");
+                    System.out.print("|_|");
                 } else if (this.board.getTileList().get(position).getState() == 2) {
                     System.out.print(" X ");
                 } else if (this.board.getTileList().get(position).getDisplayValue().equals("mine")) {
@@ -85,7 +85,7 @@ public class GameBoard {
                 position++;
             }
             if (this.board.getTileList().get(position).getState() == 0) {
-                System.out.println(" █ ");
+                System.out.println("|_|");
             } else if (this.board.getTileList().get(position).getState() == 2) {
                 System.out.println(" X ");
             } else if (this.board.getTileList().get(position).getDisplayValue().equals("mine")) {
