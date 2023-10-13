@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static model.RuleSet.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-// Unit tests for RuleSet class
+// Unit tests for RuleSet
 class RuleSetTest {
     RuleSet testRuleSet;
 

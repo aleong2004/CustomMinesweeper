@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-// Unit tests for TileListTest
+// Unit tests for TileList
 public class TileListTest {
     RuleSetList testRuleSetList;
     MineLayout testMineLayout;
