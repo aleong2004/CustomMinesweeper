@@ -1,0 +1,16 @@
+{
+    "rulesets": [{
+        "numRows": 5,
+        "gamesPlayed": 0,
+        "mineProportion": 0.1,
+        "name": "default",
+        "questionMarkChance": 0,
+        "flagLimit": false,
+        "maxFlags": 10,
+        "rangeChance": 0,
+        "numCols": 5,
+        "winPercent": 0,
+        "gamesWon": 0
+    }],
+    "selected ruleset": 0
+}

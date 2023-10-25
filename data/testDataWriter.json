@@ -1,0 +1,44 @@
+{
+    "rulesets": [
+        {
+            "numRows": 20,
+            "gamesPlayed": 16,
+            "mineProportion": 0.314159,
+            "name": "misery",
+            "questionMarkChance": 0.3,
+            "flagLimit": true,
+            "maxFlags": 4,
+            "rangeChance": 0.1,
+            "numCols": 6,
+            "winPercent": 0.8125,
+            "gamesWon": 13
+        },
+        {
+            "numRows": 17,
+            "gamesPlayed": 5,
+            "mineProportion": 0.42,
+            "name": "suffering",
+            "questionMarkChance": 0.172,
+            "flagLimit": false,
+            "maxFlags": 1,
+            "rangeChance": 0.254,
+            "numCols": 19,
+            "winPercent": 0.4,
+            "gamesWon": 2
+        },
+        {
+            "numRows": 14,
+            "gamesPlayed": 32,
+            "mineProportion": 0.21,
+            "name": "defenestration",
+            "questionMarkChance": 0.03,
+            "flagLimit": false,
+            "maxFlags": 999,
+            "rangeChance": 0.02,
+            "numCols": 13,
+            "winPercent": 0.96875,
+            "gamesWon": 31
+        }
+    ],
+    "selected ruleset": 1
+}

@@ -1,0 +1,44 @@
+{
+    "rulesets": [
+        {
+            "numRows": 8,
+            "gamesPlayed": 8,
+            "mineProportion": 0.123456789,
+            "name": "intense",
+            "questionMarkChance": 0.01,
+            "flagLimit": false,
+            "maxFlags": 0,
+            "rangeChance": 0.01,
+            "numCols": 8,
+            "winPercent": 0.625,
+            "gamesWon": 5
+        },
+        {
+            "numRows": 10,
+            "gamesPlayed": 6,
+            "mineProportion": 0.342,
+            "name": "undying",
+            "questionMarkChance": 0.2,
+            "flagLimit": true,
+            "maxFlags": 8,
+            "rangeChance": 0.1,
+            "numCols": 10,
+            "winPercent": 0.5,
+            "gamesWon": 3
+        },
+        {
+            "numRows": 20,
+            "gamesPlayed": 4,
+            "mineProportion": 0.5,
+            "name": "pain",
+            "questionMarkChance": 0.5,
+            "flagLimit": true,
+            "maxFlags": 0,
+            "rangeChance": 0.5,
+            "numCols": 20,
+            "winPercent": 0.75,
+            "gamesWon": 3
+        }
+    ],
+    "selected ruleset": 2
+}
