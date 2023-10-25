@@ -20,3 +20,5 @@ As someone who plays the classic version of *Minesweeper* fairly often, I find t
 - As a user, I want to be able to delete a ruleset from my list of saved rulesets
 - As a user, I want to be able to load in a saved ruleset and use it to play a game of *Minesweeper*
 - As a user, I want to be able to view statistics about a specific ruleset, such as the number of games completed and my win percentage on that ruleset
+- As a user, I want to be able to save my list of saved rulesets to a file
+- As a user, I want to be able to load my list of saved rulesets from a file

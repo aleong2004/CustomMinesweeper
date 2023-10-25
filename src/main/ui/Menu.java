@@ -2,7 +2,11 @@ package ui;
 
 import model.RuleSet;
 import model.RuleSetList;
+import persistence.DataReader;
+import persistence.DataWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,9 +15,14 @@ import java.util.Scanner;
 public class Menu {
     private RuleSetList savedRuleSets;
     private Scanner input;
+    private DataWriter dataWriter;
+    private DataReader dataReader;
+    private static final String DATA_STORAGE = "./data/savefile.json";
 
     // EFFECTS: initializes the list of rulesets then runs the menu
     public Menu() {
+        dataWriter = new DataWriter(DATA_STORAGE);
+        dataReader = new DataReader(DATA_STORAGE);
         savedRuleSets = new RuleSetList();
         input = new Scanner(System.in);
         runMenu();
@@ -47,6 +56,8 @@ public class Menu {
         System.out.println("\"edit\" - edit the currently selected ruleset");
         System.out.println("\"stats\" - view statistics about the currently selected ruleset");
         System.out.println("\"play\" - play a game using the currently selected ruleset");
+        System.out.println("\"save\" - save the list of rulesets to a file");
+        System.out.println("\"load\" - load a list of rulesets from a file");
         System.out.println("\"quit\" - exit the application");
     }
 
@@ -111,6 +122,10 @@ public class Menu {
             processStats();
         } else if (action.equals("play")) {
             processPlay();
+        } else if (action.equals("save")) {
+            processSave();
+        } else if (action.equals("load")) {
+            processLoad();
         } else {
             System.out.println("Invalid action - please select a valid action\n");
         }
@@ -191,4 +206,24 @@ public class Menu {
         new GameBoard(this.savedRuleSets.getCurrentlySelectedRuleSet());
     }
 
+    // EFFECTS: saves the list of rulesets to a file
+    private void processSave() {
+        try {
+            dataWriter.write(savedRuleSets);
+            System.out.println("Data saved to " + DATA_STORAGE + "\n");
+        } catch (FileNotFoundException e) {
+            System.out.println("Save failed\n");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads a list of rulesets from a file
+    private void processLoad() {
+        try {
+            savedRuleSets = dataReader.read();
+            System.out.println("Data loaded from " + DATA_STORAGE + "\n");
+        } catch (IOException e) {
+            System.out.println("Load failed\n");
+        }
+    }
 }

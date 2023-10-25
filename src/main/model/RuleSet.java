@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 // Represents a custom ruleset for minesweeper.
 // Customizable rules are:
 // - Number of rows
@@ -13,6 +15,7 @@ package model;
 // - Number of games played on this ruleset
 // - Number of games won on this ruleset
 // - Win percentage on this ruleset
+// Code for convertToJson() is based off of toJson() in the Thingy class from JsonSerializationDemo
 public class RuleSet {
     public static final int MIN_ROWS_AND_COLUMNS = 5;
     public static final int MAX_ROWS_AND_COLUMNS = 20;
@@ -166,5 +169,34 @@ public class RuleSet {
 
     public double getWinPercent() {
         return winPercent;
+    }
+
+    public void setGamesPlayed(int gamesPlayed) {
+        this.gamesPlayed = gamesPlayed;
+    }
+
+    public void setGamesWon(int gamesWon) {
+        this.gamesWon = gamesWon;
+    }
+
+    public void setWinPercent(double winPercent) {
+        this.winPercent = winPercent;
+    }
+
+    // EFFECTS: converts RuleSet to JSON
+    public JSONObject convertToJson() {
+        JSONObject jsonRuleSet = new JSONObject();
+        jsonRuleSet.put("name", name);
+        jsonRuleSet.put("numRows", numRows);
+        jsonRuleSet.put("numCols", numCols);
+        jsonRuleSet.put("mineProportion", mineProportion);
+        jsonRuleSet.put("flagLimit", flagLimit);
+        jsonRuleSet.put("maxFlags", maxFlags);
+        jsonRuleSet.put("rangeChance", rangeChance);
+        jsonRuleSet.put("questionMarkChance", questionMarkChance);
+        jsonRuleSet.put("gamesPlayed", gamesPlayed);
+        jsonRuleSet.put("gamesWon", gamesWon);
+        jsonRuleSet.put("winPercent", winPercent);
+        return jsonRuleSet;
     }
 }

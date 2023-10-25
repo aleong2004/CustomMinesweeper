@@ -1,9 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a list of rulesets
+// Code for convertToJson() and convertRuleSetsToJson() are based off of toJson() and thingiesToJson() respectively
+// Both methods are in the WorkRoom class from JsonSerializationDemo
 public class RuleSetList {
     private final List<RuleSet> ruleSetList;
     private int selectedRuleSetIndex;
@@ -59,6 +64,25 @@ public class RuleSetList {
         selectedRuleSet.setQuestionMarkChance(questionMarkChance);
     }
 
+    // MODIFIES: the currently selected ruleset
+    // EFFECTS: edits the name, rules, and stats of the currently selected ruleset
+    public void editExistingRuleSet(String name, int numRows, int numCols, double mineProportion,
+                                    boolean flagLimit, int maxFlags, double rangeChance, double questionMarkChance,
+                                    int gamesPlayed, int gamesWon, double winPercent) {
+        RuleSet selectedRuleSet = getCurrentlySelectedRuleSet();
+        selectedRuleSet.setName(name);
+        selectedRuleSet.setNumRows(numRows);
+        selectedRuleSet.setNumCols(numCols);
+        selectedRuleSet.setMineProportion(mineProportion);
+        selectedRuleSet.setFlagLimit(flagLimit);
+        selectedRuleSet.setMaxFlags(maxFlags);
+        selectedRuleSet.setRangeChance(rangeChance);
+        selectedRuleSet.setQuestionMarkChance(questionMarkChance);
+        selectedRuleSet.setGamesPlayed(gamesPlayed);
+        selectedRuleSet.setGamesWon(gamesWon);
+        selectedRuleSet.setWinPercent(winPercent);
+    }
+
 
     public List<RuleSet> getRuleSetList() {
         return ruleSetList;
@@ -73,5 +97,22 @@ public class RuleSetList {
     // EFFECTS: sets the currently selected ruleset
     public void setSelectedRuleSetIndex(int index) {
         this.selectedRuleSetIndex = index;
+    }
+
+    // EFFECTS: converts RuleSetList to JSON
+    public JSONObject convertToJson() {
+        JSONObject jsonRuleSetList = new JSONObject();
+        jsonRuleSetList.put("rulesets", convertRuleSetsToJson());
+        jsonRuleSetList.put("selected ruleset", selectedRuleSetIndex);
+        return jsonRuleSetList;
+    }
+
+    // EFFECTS: converts the list of rulesets to a JSON array
+    private JSONArray convertRuleSetsToJson() {
+        JSONArray jsonRuleSets = new JSONArray();
+        for (RuleSet ruleSet : ruleSetList) {
+            jsonRuleSets.put(ruleSet.convertToJson());
+        }
+        return jsonRuleSets;
     }
 }
