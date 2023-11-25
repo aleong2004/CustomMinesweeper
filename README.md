@@ -22,3 +22,12 @@ As someone who plays the classic version of *Minesweeper* fairly often, I find t
 - As a user, I want to be able to view statistics about a specific ruleset, such as the number of games completed and my win percentage on that ruleset
 - As a user, I want to be able to save my list of saved rulesets to a file
 - As a user, I want to be able to load my list of saved rulesets from a file
+
+## Instructions for Grader
+
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by pressing the "Remove" button, which will remove the currently selected ruleset
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by pressing the "Stats" button, which will display the statistics of the currently selected ruleset
+- You can locate the visual component by pressing the "Play" button to start a game of *Minesweeper* using the currently selected ruleset (each tile is an image)
+- You can save the state of my application by clicking the "Save" button in the main menu (the main menu is disabled when a *Minesweeper* game is running, so the state of the application can only be saved when there is not an active *Minesweeper* game)
+- You can reload the state of my application by pressing the "Load" button in the main menu (the main menu is disabled when a *Minesweeper* game is running, so the state of the application can only be reloaded when there is not an active *Minesweeper* game)
+

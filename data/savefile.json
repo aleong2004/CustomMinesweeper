@@ -1,16 +1,57 @@
 {
-    "rulesets": [{
-        "numRows": 5,
-        "gamesPlayed": 0,
-        "mineProportion": 0.1,
-        "name": "default",
-        "questionMarkChance": 0,
-        "flagLimit": false,
-        "maxFlags": 10,
-        "rangeChance": 0,
-        "numCols": 5,
-        "winPercent": 0,
-        "gamesWon": 0
-    }],
-    "selected ruleset": 0
+    "rulesets": [
+        {
+            "numRows": 5,
+            "gamesPlayed": 0,
+            "mineProportion": 0.1,
+            "name": "default",
+            "questionMarkChance": 0,
+            "flagLimit": false,
+            "maxFlags": 10,
+            "rangeChance": 0,
+            "numCols": 5,
+            "winPercent": 0,
+            "gamesWon": 0
+        },
+        {
+            "numRows": 6,
+            "gamesPlayed": 0,
+            "mineProportion": 0.2,
+            "name": "intense undying pain",
+            "questionMarkChance": 0.15,
+            "flagLimit": false,
+            "maxFlags": 0,
+            "rangeChance": 0.1,
+            "numCols": 9,
+            "winPercent": 0,
+            "gamesWon": 0
+        },
+        {
+            "numRows": 20,
+            "gamesPlayed": 0,
+            "mineProportion": 0.5,
+            "name": "the lord has forsaken me",
+            "questionMarkChance": 0.5,
+            "flagLimit": true,
+            "maxFlags": 1,
+            "rangeChance": 0.49,
+            "numCols": 20,
+            "winPercent": 0,
+            "gamesWon": 0
+        },
+        {
+            "numRows": 5,
+            "gamesPlayed": 0,
+            "mineProportion": 0.1,
+            "name": "default",
+            "questionMarkChance": 0,
+            "flagLimit": false,
+            "maxFlags": 10,
+            "rangeChance": 0,
+            "numCols": 5,
+            "winPercent": 0,
+            "gamesWon": 0
+        }
+    ],
+    "selected ruleset": 2
 }

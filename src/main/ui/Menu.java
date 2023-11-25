@@ -65,21 +65,7 @@ public class Menu {
     private void displaySelectedRuleSet() {
         RuleSet selected = savedRuleSets.getCurrentlySelectedRuleSet();
         System.out.println("Selected ruleset:");
-        System.out.print(selected.getName());
-        System.out.print(", ");
-        System.out.print(selected.getNumRows());
-        System.out.print(", ");
-        System.out.print(selected.getNumCols());
-        System.out.print(", ");
-        System.out.print(selected.getMineProportion());
-        System.out.print(", ");
-        System.out.print(selected.isFlagLimit());
-        System.out.print(", ");
-        System.out.print(selected.getMaxFlags());
-        System.out.print(", ");
-        System.out.print(selected.getRangeChance());
-        System.out.print(", ");
-        System.out.println(selected.getQuestionMarkChance());
+        printRuleSet(selected);
         System.out.print("\n");
     }
 
@@ -88,23 +74,28 @@ public class Menu {
         List<RuleSet> savedRuleSets = this.savedRuleSets.getRuleSetList();
         System.out.println("List of saved rulesets:");
         for (RuleSet ruleSet : savedRuleSets) {
-            System.out.print(ruleSet.getName());
-            System.out.print(", ");
-            System.out.print(ruleSet.getNumRows());
-            System.out.print(", ");
-            System.out.print(ruleSet.getNumCols());
-            System.out.print(", ");
-            System.out.print(ruleSet.getMineProportion());
-            System.out.print(", ");
-            System.out.print(ruleSet.isFlagLimit());
-            System.out.print(", ");
-            System.out.print(ruleSet.getMaxFlags());
-            System.out.print(", ");
-            System.out.print(ruleSet.getRangeChance());
-            System.out.print(", ");
-            System.out.println(ruleSet.getQuestionMarkChance());
+            printRuleSet(ruleSet);
         }
         System.out.print("\n");
+    }
+
+    // EFFECTS: prints ruleset to console
+    private void printRuleSet(RuleSet ruleSet) {
+        System.out.print(ruleSet.getName());
+        System.out.print(", ");
+        System.out.print(ruleSet.getNumRows());
+        System.out.print(", ");
+        System.out.print(ruleSet.getNumCols());
+        System.out.print(", ");
+        System.out.print(ruleSet.getMineProportion());
+        System.out.print(", ");
+        System.out.print(ruleSet.isFlagLimit());
+        System.out.print(", ");
+        System.out.print(ruleSet.getMaxFlags());
+        System.out.print(", ");
+        System.out.print(ruleSet.getRangeChance());
+        System.out.print(", ");
+        System.out.println(ruleSet.getQuestionMarkChance());
     }
 
     // MODIFIES: this
@@ -148,8 +139,9 @@ public class Menu {
         int sizeAfter = this.savedRuleSets.getRuleSetList().size();
         if (sizeBefore == sizeAfter) {
             System.out.println("Last ruleset cannot be removed\n");
+        } else {
+            System.out.println("Ruleset removed\n");
         }
-        System.out.println("Ruleset removed\n");
     }
 
     // MODIFIES: this
@@ -206,6 +198,7 @@ public class Menu {
         new GameBoard(this.savedRuleSets.getCurrentlySelectedRuleSet());
     }
 
+    // MODIFIES: this
     // EFFECTS: saves the list of rulesets to a file
     private void processSave() {
         try {
