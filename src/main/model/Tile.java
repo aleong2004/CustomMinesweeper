@@ -47,6 +47,7 @@ public class Tile {
         this.index = index;
         setBoardSection(ruleSet);
         this.state = 0;
+        this.displayValue = "0";
         this.mine = mineLayout.getMineLayout().get(index);
         Random random = new Random();
         random.setSeed(seed);
@@ -98,21 +99,23 @@ public class Tile {
     // MODIFIES: this
     // EFFECTS: updates displayValue to be a range
     public void updateDisplayValueRange(int seed) {
-        Random random = new Random();
-        random.setSeed(seed);
-        int randomInt = random.nextInt(2);
-        if (this.numNeighbouringMines == 0) {
-            this.displayValue = "0-1";
-        } else if (this.numNeighbouringMines == 8) {
-            this.displayValue = "7-8";
-        } else if (randomInt == 0) {
-            String lower = Integer.toString(this.numNeighbouringMines - 1);
-            String upper = Integer.toString(this.numNeighbouringMines);
-            this.displayValue = lower + "-" + upper;
-        } else {
-            String lower = Integer.toString(this.numNeighbouringMines);
-            String upper = Integer.toString(this.numNeighbouringMines + 1);
-            this.displayValue = lower + "-" + upper;
+        if (!this.displayValue.contains("-")) {
+            Random random = new Random();
+            random.setSeed(seed);
+            int randomInt = random.nextInt(2);
+            if (this.numNeighbouringMines == 0) {
+                this.displayValue = "0-1";
+            } else if (this.numNeighbouringMines == 8) {
+                this.displayValue = "7-8";
+            } else if (randomInt == 0) {
+                String lower = Integer.toString(this.numNeighbouringMines - 1);
+                String upper = Integer.toString(this.numNeighbouringMines);
+                this.displayValue = lower + "-" + upper;
+            } else {
+                String lower = Integer.toString(this.numNeighbouringMines);
+                String upper = Integer.toString(this.numNeighbouringMines + 1);
+                this.displayValue = lower + "-" + upper;
+            }
         }
     }
 
