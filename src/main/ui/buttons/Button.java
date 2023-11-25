@@ -4,6 +4,7 @@ import ui.MenuGUI;
 
 import javax.swing.*;
 
+// Code based off of SimpleDrawingPlayer
 // Represents a button added to a MenuGUI
 public abstract class Button {
     protected JButton button;

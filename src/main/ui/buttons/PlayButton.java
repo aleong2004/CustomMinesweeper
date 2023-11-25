@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Code based off of SimpleDrawingPlayer
 // Represents a button that initiates a game of minesweeper when clicked
 public class PlayButton extends Button {
     // EFFECTS: constructs a new PlayButton

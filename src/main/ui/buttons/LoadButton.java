@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Code based off of SimpleDrawingPlayer
 // Represents a button that loads in data from a JSON file when clicked
 public class LoadButton extends Button {
     // EFFECTS: constructs a new LoadButton

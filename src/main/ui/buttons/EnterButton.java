@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Code based off of SimpleDrawingPlayer
 // Represents a button that processes the input given to the text field in its parent MenuGUI
 public class EnterButton extends Button {
     // EFFECTS: constructs a new EnterButton

@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Code based off of SimpleDrawingPlayer
 // Represents a button that displays the stats of the currently selected ruleset when clicked
 public class StatsButton extends Button {
     // EFFECTS: constructs a new StatsButton

@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Code based off of SimpleDrawingPlayer
 // Represents a button that saves data to a JSON file when clicked
 public class SaveButton extends Button {
     // EFFECTS: constructs a new SaveButton
