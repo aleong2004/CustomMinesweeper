@@ -28,7 +28,6 @@ public class GameBoardGUI extends JFrame {
     public GameBoardGUI(RuleSet ruleSet, MenuGUI menuGUI) {
         super("Minesweeper");
         addWindowListener(new GameBoardListener());
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.ruleSet = ruleSet;
         this.numUnrevealedTiles = this.ruleSet.getNumCols() * this.ruleSet.getNumRows();
         this.firstMove = true;

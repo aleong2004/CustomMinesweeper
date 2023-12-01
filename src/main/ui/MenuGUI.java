@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.RuleSet;
 import model.RuleSetList;
 import persistence.DataReader;
@@ -10,6 +12,8 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -54,14 +58,14 @@ public class MenuGUI extends JFrame {
         dataWriter = new DataWriter(DATA_STORAGE);
         dataReader = new DataReader(DATA_STORAGE);
         savedRuleSets = new RuleSetList();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        addWindowListener(new MenuListener());
         setupButtonPanel();
         ruleSetListModel = new DefaultListModel();
         updateRuleSetListModel();
         ruleSetList = new JList(ruleSetListModel);
         ruleSetList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         ruleSetList.setSelectedIndex(savedRuleSets.getSelectedRuleSetIndex());
-        ruleSetList.addListSelectionListener(new ListPanelListener());
+        ruleSetList.addListSelectionListener(new RuleSetListPanelListener());
         JScrollPane listPanel = new JScrollPane(ruleSetList);
         add(listPanel, BorderLayout.CENTER);
 
@@ -297,14 +301,7 @@ public class MenuGUI extends JFrame {
 
     // EFFECTS: displays the statistics for the currently selected ruleset
     private void processStats() {
-        String name = this.savedRuleSets.getCurrentlySelectedRuleSet().getName();
-        int gamesPlayed = this.savedRuleSets.getCurrentlySelectedRuleSet().getGamesPlayed();
-        int gamesWon = this.savedRuleSets.getCurrentlySelectedRuleSet().getGamesWon();
-        double winPercent = this.savedRuleSets.getCurrentlySelectedRuleSet().getWinPercent() * 100;
-        textDisplay.setText("Statistics for ruleset \"" + name + "\": "
-                            + "Games played: " + gamesPlayed + ". "
-                            + "Games won: " + gamesWon + ". "
-                            + "Win Percentage " + winPercent + "%.");
+        textDisplay.setText(this.savedRuleSets.getSelectedRuleSetStats());
     }
 
     // MODIFIES: this
@@ -403,11 +400,24 @@ public class MenuGUI extends JFrame {
     }
 
     // Represents a ListSelectionListener for ruleSetList
-    private class ListPanelListener implements ListSelectionListener {
+    private class RuleSetListPanelListener implements ListSelectionListener {
         // EFFECTS: sets the currently selected ruleset to the one that was selected in the JList
         @Override
         public void valueChanged(ListSelectionEvent e) {
             savedRuleSets.setSelectedRuleSetIndex(ruleSetList.getSelectedIndex());
+        }
+    }
+
+    // Represents a WindowListener for GameBoardGUI that handles closing the window
+    private class MenuListener extends WindowAdapter {
+        // EFFECTS: prints all events to the console then quits the application
+        @Override
+        public void windowClosing(WindowEvent e) {
+            EventLog eventLog = EventLog.getInstance();
+            for (Event event : eventLog) {
+                System.out.println(event.toString());
+            }
+            System.exit(0);
         }
     }
 }

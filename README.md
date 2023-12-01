@@ -31,3 +31,14 @@ As someone who plays the classic version of *Minesweeper* fairly often, I find t
 - You can save the state of my application by clicking the "Save" button in the main menu (the main menu is disabled when a *Minesweeper* game is running, so the state of the application can only be saved when there is not an active *Minesweeper* game)
 - You can reload the state of my application by pressing the "Load" button in the main menu (the main menu is disabled when a *Minesweeper* game is running, so the state of the application can only be reloaded when there is not an active *Minesweeper* game)
 
+## Phase 4: Task 2
+
+Possible events that can occur when the program runs:
+- "Ruleset added at index X", where 'X' is the index of the added ruleset
+- "Ruleset removed at index X", where 'X' is the index of the removed ruleset
+- "Ruleset edited at index X", where 'X' is the index of the edited ruleset
+- "Stats viewed for ruleset at index X", where 'X' is the index of the ruleset whose stats were viewed
+- "Saved data successfully"
+- "Generated empty minesweeper board"
+- "Generated randomized minesweeper board"
+- "Minesweeper game completed"

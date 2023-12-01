@@ -27,6 +27,7 @@ public class RuleSetList {
         RuleSet add = new RuleSet();
         this.ruleSetList.add(add);
         this.selectedRuleSetIndex = sizeOfListBeforeAdding;
+        EventLog.getInstance().logEvent(new Event("Ruleset added at index " + selectedRuleSetIndex));
     }
 
     // REQUIRES: this.ruleSetList.size() > 0
@@ -36,10 +37,12 @@ public class RuleSetList {
     //          sets the first ruleset as the currently selected ruleset
     public void removeRuleSet() {
         int size = this.ruleSetList.size();
+        RuleSet currentRuleSet = getCurrentlySelectedRuleSet();
+        int removedRuleSetIndex = this.selectedRuleSetIndex;
         if (size > 1) {
-            RuleSet currentRuleSet = getCurrentlySelectedRuleSet();
             this.ruleSetList.remove(currentRuleSet);
             this.selectedRuleSetIndex = 0;
+            EventLog.getInstance().logEvent(new Event("Ruleset removed at index " + removedRuleSetIndex));
         }
     }
 
@@ -62,6 +65,7 @@ public class RuleSetList {
         selectedRuleSet.setMaxFlags(maxFlags);
         selectedRuleSet.setRangeChance(rangeChance);
         selectedRuleSet.setQuestionMarkChance(questionMarkChance);
+        EventLog.getInstance().logEvent(new Event("Ruleset edited at index " + selectedRuleSetIndex));
     }
 
     // MODIFIES: the currently selected ruleset
@@ -81,6 +85,20 @@ public class RuleSetList {
         selectedRuleSet.setGamesPlayed(gamesPlayed);
         selectedRuleSet.setGamesWon(gamesWon);
         selectedRuleSet.setWinPercent(winPercent);
+        EventLog.getInstance().logEvent(new Event("Ruleset edited at index " + selectedRuleSetIndex));
+    }
+
+    // EFFECTS: returns the stats for the selected ruleset
+    public String getSelectedRuleSetStats() {
+        String name = getCurrentlySelectedRuleSet().getName();
+        int gamesPlayed = getCurrentlySelectedRuleSet().getGamesPlayed();
+        int gamesWon = getCurrentlySelectedRuleSet().getGamesWon();
+        double winPercent = getCurrentlySelectedRuleSet().getWinPercent() * 100;
+        EventLog.getInstance().logEvent(new Event("Stats viewed for ruleset at index " + selectedRuleSetIndex));
+        return "Statistics for ruleset \"" + name + "\": "
+                + "Games played: " + gamesPlayed + ". "
+                + "Games won: " + gamesWon + ". "
+                + "Win Percentage " + winPercent + "%.";
     }
 
 
@@ -104,6 +122,7 @@ public class RuleSetList {
         JSONObject jsonRuleSetList = new JSONObject();
         jsonRuleSetList.put("rulesets", convertRuleSetsToJson());
         jsonRuleSetList.put("selected ruleset", selectedRuleSetIndex);
+        EventLog.getInstance().logEvent(new Event("Saved data successfully"));
         return jsonRuleSetList;
     }
 

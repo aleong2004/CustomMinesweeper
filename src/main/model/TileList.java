@@ -22,6 +22,7 @@ public class TileList {
         for (int i = 0; i < size; i++) {
             this.tileList.add(new Tile(i));
         }
+        EventLog.getInstance().logEvent(new Event("Generated empty minesweeper board"));
     }
 
     // REQUIRES: numRows and numCols in ruleSet are both > 0,
@@ -40,6 +41,7 @@ public class TileList {
             int nextSeed = random.nextInt();
             this.tileList.add(new Tile(ruleSet, mineLayout, i, nextSeed));
         }
+        EventLog.getInstance().logEvent(new Event("Generated randomized minesweeper board"));
     }
 
     // MODIFIES: all Tiles in tileList

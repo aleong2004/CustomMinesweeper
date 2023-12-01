@@ -73,7 +73,7 @@ public class TileGUI {
     //          - if the tile is unrevealed, graphic is set to an unrevealed tile
     //          - if the tile is flagged, graphic is set to a flagged tile
     //          - if the tile is revealed and should display a range, updateLabelRange() is called;
-    //          - if the tile is revealed and should not display a range, updateLabelNoRange() is called;
+    //          - if the tile is revealed  should not display a range, updateLabelNoRange() is called;
     public void updateLabel() {
         this.label.setIcon(null);
         if (this.tile.getState() == 0) {

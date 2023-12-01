@@ -61,6 +61,7 @@ public class RuleSet {
             this.gamesWon++;
         }
         this.winPercent = (double) this.gamesWon / this.gamesPlayed;
+        EventLog.getInstance().logEvent(new Event("Minesweeper game completed"));
     }
 
     public String getName() {

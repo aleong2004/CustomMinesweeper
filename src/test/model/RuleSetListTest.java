@@ -18,9 +18,9 @@ public class RuleSetListTest {
         testRuleSetList = new RuleSetList();
         testRuleSetList.addRuleSet();
         testRuleSetList.addRuleSet();
-        testRuleSetList.editExistingRuleSet("edited3", 10, 10, 0.15, true, 20, 0.1, 0.0);
+        testRuleSetList.editExistingRuleSet("edited3", 10, 10, 0.15, true, 20, 0.1, 0.0, 2, 1, 0.5);
         testRuleSetList.setSelectedRuleSetIndex(1);
-        testRuleSetList.editExistingRuleSet("edited2", 18, 20, 0.2, false, 21, 0.0, 0.15);
+        testRuleSetList.editExistingRuleSet("edited2", 18, 20, 0.2, false, 21, 0.0, 0.15, 4, 3, 0.75);
     }
 
     @Test
@@ -44,6 +44,8 @@ public class RuleSetListTest {
         assertEquals(21, first.getMaxFlags());
         assertEquals(0.0, first.getRangeChance());
         assertEquals(0.15, first.getQuestionMarkChance());
+        assertEquals("Statistics for ruleset \"edited2\": Games played: 4. Games won: 3. Win Percentage 75.0%.",
+                testRuleSetList.getSelectedRuleSetStats());
     }
 
     @Test

@@ -183,14 +183,7 @@ public class Menu {
 
     // EFFECTS: displays the statistics for the currently selected ruleset
     private void processStats() {
-        String name = this.savedRuleSets.getCurrentlySelectedRuleSet().getName();
-        int gamesPlayed = this.savedRuleSets.getCurrentlySelectedRuleSet().getGamesPlayed();
-        int gamesWon = this.savedRuleSets.getCurrentlySelectedRuleSet().getGamesWon();
-        double winPercent = this.savedRuleSets.getCurrentlySelectedRuleSet().getWinPercent() * 100;
-        System.out.println("Statistics for ruleset \"" + name + "\":");
-        System.out.println("Games played: " + gamesPlayed);
-        System.out.println("Games won: " + gamesWon);
-        System.out.println("Win Percentage " + winPercent + "%\n");
+        System.out.println(this.savedRuleSets.getSelectedRuleSetStats());
     }
 
     // EFFECTS: initializes the minesweeper board for the currently selected ruleset
