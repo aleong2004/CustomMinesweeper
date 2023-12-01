@@ -34,10 +34,10 @@ As someone who plays the classic version of *Minesweeper* fairly often, I find t
 ## Phase 4: Task 2
 
 Possible events that can occur when the program runs:
-- "Ruleset added at index X", where 'X' is the index of the added ruleset
-- "Ruleset removed at index X", where 'X' is the index of the removed ruleset
-- "Ruleset edited at index X", where 'X' is the index of the edited ruleset
-- "Stats viewed for ruleset at index X", where 'X' is the index of the ruleset whose stats were viewed
+- "Ruleset added at index X", where X is the index of the added ruleset
+- "Ruleset removed at index X", where X is the index of the removed ruleset
+- "Ruleset edited at index X", where X is the index of the edited ruleset
+- "Stats viewed for ruleset at index X", where X is the index of the ruleset whose stats were viewed
 - "Saved data successfully"
 - "Generated empty minesweeper board"
 - "Generated randomized minesweeper board"
@@ -45,4 +45,4 @@ Possible events that can occur when the program runs:
 
 ## Phase 4: Task 3
 
-If I had more time, the first change I would make would be to apply the Singleton Design Pattern to the "MenuGUI" class. Since "MenuGUI" represents the GUI of the main menu, there should only ever be one instance of "MenuGUI". In addition, each class that facilitates functionality provided by "MenuGUI" requires access to the same shared instance of "MenuGUI". Applying the Singleton Design Pattern to "MenuGUI" would ensure that there can only ever be one instance of "MenuGUI", while also providing easy access to this single instance, which would be extremely helpful if I want to add functionality to "MenuGUI" in the future.
+If I had more time, the first change I would make would be to apply the Singleton Design Pattern to the "MenuGUI" class. Since "MenuGUI" represents the GUI of the main menu, there should only ever be one instance of "MenuGUI". In addition, each class that facilitates functionality provided by "MenuGUI" requires access to the same shared instance of "MenuGUI". Applying the Singleton Design Pattern to "MenuGUI" would ensure that there can only ever be one instance of "MenuGUI". The Singleton Design Pattern would also provide easy access to this single instance of "MenuGUI", which would be extremely helpful anytime I want to add functionality to "MenuGUI" in the future.
