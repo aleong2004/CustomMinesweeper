@@ -42,3 +42,7 @@ Possible events that can occur when the program runs:
 - "Generated empty minesweeper board"
 - "Generated randomized minesweeper board"
 - "Minesweeper game completed"
+
+## Phase 4: Task 3
+
+If I had more time, the first change I would make would be to apply the Singleton Design Pattern to the "MenuGUI" class. Since "MenuGUI" represents the GUI of the main menu, there should only ever be one instance of "MenuGUI". In addition, each class that facilitates functionality provided by "MenuGUI" requires access to the same shared instance of "MenuGUI". Applying the Singleton Design Pattern to "MenuGUI" would ensure that there can only ever be one instance of "MenuGUI", while also providing easy access to this single instance, which would be extremely helpful if I want to add functionality to "MenuGUI" in the future.
